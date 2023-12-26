@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LexLiberalis Custom Search </title>
+    <link href='https://fonts.googleapis.com/css?family=Nunito:400,300' rel='stylesheet' type='text/css'>
+	
+	<div class="logo-container">
+  <img id="desktop-logo" src="../static/images/ikanoon6_powered_transparent.png" alt="Desktop Logo">
+</div>
+</head>
+<body>
+
+Your selected judgments are:
+
+{% for document in documenttexts %}
+
+{{document}}
+
+{% endfor %}
+
+</body>

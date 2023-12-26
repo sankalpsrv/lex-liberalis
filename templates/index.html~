@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+    <title>LexLiberalis</title>
+    <div class="logo-container">
+  <img id="desktop-logo" src="../static/images/ikanoon6_powered_transparent.png" alt="Desktop Logo">
+</div>
+
+<!--  <link rel="shortcut icon" href="./favicon.ico">   -->
+<!-- <link rel="icon" href="./favicon.ico">  -->
+<!-- <link rel="icon" href="data:;base64,iVBORw0KGgo="> -->
+    <!-- <link rel='stylesheet' href='/global.css'> -->
+    
+
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <link rel="stylesheet" href="/build/bundle.css" />
+
+    <script defer src="/build/bundle.js"></script>
+  </head>
+
+  <body>
+  <div class="top-row">
+  <div class="dropdown-container">
+      <div class="custom-select">
+          <form action="/main/" method="POST" name="selection_docs">
+          <input type="hidden" name="name" value="selection_docs">
+     <select onchange="this.form.submit()" name="folder_name">
+     
+  <option value="preview" {% if selected_folder_name == "preview" %} selected {% endif %}>Preview< - Aadhar (2018) 5J and Privacy (2017) 9J Judgments</option>
+    <option value="custom_judgments" {% if selected_folder_name == "custom_judgments" %} selected {% endif %}>View Custom Judgments (powered by IndianKanoon)</option>
+    
+</select>
+      </form>
+      </div>
+  </div>
+  
+ <!--  <form action="/main/" method="POST" name="custom_documents">
+	<input type="hidden" name="name" value="custom_documents">
+	 -->	
+	
+  </form>
+ 
+  
+ <div class="link-container">
+    <a class="logout-link" href="{{ url_for('clear') }}">Clear Selection</a>
+</div>
+
+  
+  
+  </body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LexLiberalis Custom Search </title>
+    <link href='https://fonts.googleapis.com/css?family=Nunito:400,300' rel='stylesheet' type='text/css'>
+	
+	<div class="logo-container">
+  <img id="desktop-logo" src="../static/images/ikanoon6_powered_transparent.png" alt="Desktop Logo">
+</div>
+
+    <style>
+        *, *:before, *:after {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+  body {
+    font-family: 'Nunito', sans-serif;
+    color: #384047;
+  }
+  input[type="text"],
+  select {
+    background: rgba(255,255,255,0.1);
+    border: none;
+    font-size: 16px;
+    height: auto;
+    margin: 0;
+    outline: 0;
+    padding: 15px;
+    width: 100%;
+    background-color: #e8eeef;
+    color: #8a97a0;
+    box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
+    margin-bottom: 30px;
+  }
+  form {
+    max-width: 500px;
+    margin: 10px auto;
+    padding: 10px 20px;
+    background: #f4f7f8;
+    border-radius: 8px;
+  }
+  h1 {
+    margin: 0 0 30px 0;
+    text-align: center;
+  }
+  #btn {
+    padding: 19px 39px 18px 39px;
+    color: #FFF;
+    background-color: #4bc970;
+    font-size: 18px;
+    text-align: center;
+    font-style: normal;
+    border-radius: 5px;
+    width: 100%;
+    border: 1px solid #3ac162;
+    border-width: 1px 1px 3px;
+    box-shadow: 0 -1px 0 rgba(255,255,255,0.1) inset;
+    margin-bottom: 10px;
+  }
+  label {
+    display: block;
+    margin-bottom: 8px;
+  }
+    </style>
+</head>
+<body>
+<h1>You can add judgments based on your search query</h1>
+<form action="{{ url_for('login_instance.searchIK') }}" method="POST">
+          <input type="hidden" name="name" value="searchquery">
+    <label for="searchquery">Enter search query</label>
+    <input type="text" id="searchquery" name="searchquery" value="" required>
+    <input id="btn" type="submit" value="Submit">
+</form>
+
+OR
+
+<h1> You can type in the document URLS from IndianKanoon, separated by a space </h1>
+
+<form action = "{{url_for ('process_selected_documents') }}" method="POST">
+	<input type = "hidden" name="name" value = "searchdocs">
+	<label for = "searchdocs"> Enter document URLS separated by space </label>
+	<input type = "text" id = "searchdocs" name="searchdocs" value="" required>
+	<input id="btn" type="submit" value="submit">
+</form>
+
+{% if documentlist|length != 0 %}
+    <form action="{{ url_for('process_selected_documents') }}" method="POST">
+        <ul>
+            {% for document, docids in documentlist.items() %}
+                <li>
+                    {{ document }}
+                    {% for docid in docids %}
+                        <input type="checkbox" name="selected_documents" value="{{ docid }}">
+                        {{ docid }}
+                    {% endfor %}
+                </li>
+            {% endfor %}
+        </ul>
+                <input type="submit" value="Submit Selected Documents">
+    </form>
+{% endif %}
+
+</body>
+</html>

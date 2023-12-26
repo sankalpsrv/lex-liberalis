@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+
+        .vl {
+          border-left: 2px solid #ccc;
+          margin: 50px auto;
+        }
+
+        .tab {
+            background-color: #ffffff;
+            padding: 20px;
+            border-top: none;
+            border-radius: 0 0 5px 5px;
+            width: 60%;
+            margin: 50px auto;
+        }
+
+        .tabcontent {
+            padding: 20px;
+        }
+
+        #tabs {
+            overflow: hidden;
+            background-color: #f1f1f1;
+            border-radius: 5px 5px 0 0;
+            display: flex;
+            width: 60%;
+            margin: 50px auto;
+        }
+
+
+
+        .tab div {
+            flex: 1;
+            text-align: center;
+            padding: 15px 0;
+            cursor: pointer;
+        }
+
+        .tab div.active {
+            background-color: #fff;
+            border-bottom: 1px solid #fff;
+            border-top: 1px solid #ccc;
+        }
+
+        .tabcontent form {
+            margin-top: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        input[type="password"],
+        input[type="email"] {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        input[type="checkbox"] {
+            margin-bottom: 20px;
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .checkbox-item{
+            display: flex;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        @media (max-width: 768px) {
+            .tab {
+                width: 80%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+    <div class="notification is-danger">
+        {{ messages[0] }}. Go to <a href="{{ url_for('login') }}">login page</a>.
+    </div>
+{% endif %}
+{% endwith %}
+    <div id="tabs">
+        <div class="tab active" onclick="openTab(event, 'Login')">Login</div>
+        <div class="vl"></div>
+        <div class="tab" onclick="openTab(event, 'Signup')">Sign Up</div>
+    </div>
+
+    <div id="Login" class="tab">
+        <div class="tabcontent">
+            <h2>Login</h2>
+            <form method="POST" action="/login">
+                <label for="username">Email:</label>
+                <input type="text" id="username" name="email" required>
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="terms" name="remember">
+                    <label for="terms">Remember me <a href=""></a></label>
+                </div>
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+    </div>
+
+    <div id="Signup" class="tab" style="display: none;">
+        <div class="tabcontent">
+            <h2>Sign Up</h2>
+            <form method="POST" action="/signup">
+                <label for="newUsername">Name:</label>
+                <input type="text" id="newUsername" name="name">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                <label for="newPassword">Password:</label>
+                <input type="password" id="newPassword" name="password" required
+                pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 6 or more characters"
+                >
+                 <div class="checkbox-item">
+                    <input type="checkbox" id="terms" name="terms" required>
+                    <label for="terms">I agree to the terms and conditions <a href="{{ url_for('home', path='TnC.txt') }}">read more</a></label>
+                </div>
+                 <div class="checkbox-item">
+                    <input type="checkbox" id="terms" name="privacy" required>
+                    <label for="terms">I agree to the Privacy policy <a href="{{ url_for('home', path='PrivacyPolicy.txt') }}">read more</a></label>
+                </div>
+                 <div class="checkbox-item">
+                    <input type="checkbox" id="terms" name="copyright" required>
+                    <label for="terms">I agree to the Copyright Notice <a href="{{ url_for('home', path='CopyRightNotice.txt') }}">read more</a></label>
+                </div>
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tab");
+            for (i = 2; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tab");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].classList.remove("active");
+            }
+            document.getElementById(tabName).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+    <title>LexGo</title>
+    
+<!--     {{ url_for('static') }} -->
+<!--  <link rel="shortcut icon" href="./favicon.ico">   -->
+<!-- <link rel="icon" href="./favicon.ico">  -->
+<!-- <link rel="icon" href="data:;base64,iVBORw0KGgo="> -->
+    <!-- <link rel='stylesheet' href='/global.css'> -->
+    
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}"> 
+
+    <link rel="stylesheet" href="/build/bundle.css" />
+
+    <script defer src="/build/bundle.js"></script>
+  </head>
+
+  <body>
+  <dic class="top-row">
+  <div class="dropdown-container">
+      <div class="custom-select">
+          <form action="/" method="POST">
+      <select onchange="this.form.submit()" name="folder_name" value="{{ selected_folder_name }}">
+          <option value="judgments">  judgments </option>
+        <option value="preview">  preview </option>
+
+        <option value="books">  books </option>
+      </select>
+      </form>
+      </div>
+  </div>
+  <div class="link-container">
+      <a class="logout-link" href="/logout">Logout</a></div>
+  </dic>
+  </body>
+</html>
