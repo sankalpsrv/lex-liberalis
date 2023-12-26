@@ -6,8 +6,7 @@ This project is based on the awesome Semantra v0.1.7 which shipped with an MIT L
 
 ### Example video
 
-https://github.com/sankalpsrv/lex-liberalis/raw/main/LL-1minute.MOV
-
+raw.githubusercontent.com/sankalpsrv/lex-liberalis/main/LL-1minute.MOV
 
 ### Requirements
 
