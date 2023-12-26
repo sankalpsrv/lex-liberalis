@@ -2,7 +2,7 @@
 
 ### Base 
 
-This project is based on the awesome Semantra v0.1.7 which shipped with an MIT License. View Semantra by Dyson Freeman here - github.com/freedmand/semantra
+This project is based on the awesome Semantra v0.1.7 which shipped with an MIT License. View Semantra by Dylan Freedman here - github.com/freedmand/semantra
 
 ### Example video
 
